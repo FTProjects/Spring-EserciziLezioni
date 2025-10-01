@@ -1,4 +1,9 @@
 package proxy;
 
-public class CommentNotificationProxy {
+import model.Comment;
+
+public interface CommentNotificationProxy {
+
+    void sendNotification(Comment comment);
+
 }
