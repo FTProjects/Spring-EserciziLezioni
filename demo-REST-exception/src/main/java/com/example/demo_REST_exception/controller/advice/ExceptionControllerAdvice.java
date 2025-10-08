@@ -14,9 +14,10 @@ public class ExceptionControllerAdvice {
     // creiamo un metodo che scatta quando viene
     // lanciata una NotEnougMoneyException al controller
     @ExceptionHandler(NotEnoughMoneyException.class)
-    public ResponseEntity<ErrorDetails> moneyHandler() {
-        ErrorDetails errorDetails = new ErrorDetails();
-        errorDetails.setMessage("Non ci sono abbastanza fondi...");
-        return ResponseEntity.badRequest().body(errorDetails);
+    public ResponseEntity<?> moneyHandler() {
+        // FIXME ritorna messaggio eccezione
+//        ErrorDetails errorDetails = new ErrorDetails();
+//        errorDetails.setMessage("Non ci sono abbastanza fondi...");
+        return ResponseEntity.badRequest().body("ciao");
     }
 }

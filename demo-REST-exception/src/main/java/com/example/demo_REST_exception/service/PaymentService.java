@@ -10,13 +10,13 @@ public class PaymentService {
     public PaymentDetails processPayment() {
         // Simuliamo chge sul conto non ci siamo
         // abbastanza soldi
-        throw new NotEnoughMoneyException();
+        throw new NotEnoughMoneyException("Pagamento con Satispay: Non ci sono abbastanza fondi...");
     }
 
     public PaymentDetails processPaymentPayPal() {
         // Simuliamo chge sul conto non ci siamo
         // abbastanza soldi
-        throw new NotEnoughMoneyException();
+        throw new NotEnoughMoneyException("Non ci sono abbastanza fondi dal sul tuo account PayPal.");
     }
 
 }
