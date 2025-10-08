@@ -1,5 +1,6 @@
 package com.example.demo_REST_exception.controller;
 
+import com.example.demo_REST_exception.exception.NotEnoughMoneyException;
 import com.example.demo_REST_exception.model.dto.PaymentDetails;
 import com.example.demo_REST_exception.service.PaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,15 @@ public class PaymentController {
     // <?> vuol dire che possiamo tornare qualsiasi oggetto come
     // body della risposta HTTP
     public ResponseEntity<?> makePayment() {
-        PaymentDetails paymentDetails = paymentService.processPayment();
-        return ResponseEntity.ok(paymentDetails); // ok è una scorciatoia per status.OK
+
+        // scrivo logica di controllo eccezione
+        try {
+            PaymentDetails paymentDetails = paymentService.processPayment();
+            return ResponseEntity.ok(paymentDetails); // ok è una scorciatoia per status.OK
+        } catch (NotEnoughMoneyException nemEx) {
+            return ResponseEntity.badRequest().build();
+        }
     }
+
+
 }
