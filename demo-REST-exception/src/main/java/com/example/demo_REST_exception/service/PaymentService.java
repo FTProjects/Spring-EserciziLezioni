@@ -13,4 +13,10 @@ public class PaymentService {
         throw new NotEnoughMoneyException();
     }
 
+    public PaymentDetails processPaymentPayPal() {
+        // Simuliamo chge sul conto non ci siamo
+        // abbastanza soldi
+        throw new NotEnoughMoneyException();
+    }
+
 }

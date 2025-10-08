@@ -1,6 +1,7 @@
 package com.example.demo_REST_exception.controller;
 
 import com.example.demo_REST_exception.exception.NotEnoughMoneyException;
+import com.example.demo_REST_exception.model.dto.ErrorDetails;
 import com.example.demo_REST_exception.model.dto.PaymentDetails;
 import com.example.demo_REST_exception.service.PaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,21 @@ public class PaymentController {
             PaymentDetails paymentDetails = paymentService.processPayment();
             return ResponseEntity.ok(paymentDetails); // ok è una scorciatoia per status.OK
         } catch (NotEnoughMoneyException nemEx) {
-            return ResponseEntity.badRequest().build();
+            ErrorDetails errorDetails = new ErrorDetails();
+            errorDetails.setMessage("Non ci sono abbastanza fondi...");
+            return ResponseEntity.badRequest().body(errorDetails); // torniamo 400 con un messaggio di errore nel body
+        }
+    }
+
+    @PostMapping("/paymentPayPal")
+    public ResponseEntity<?> makePaymentPayPal() {
+        try {
+            PaymentDetails paymentDetails = paymentService.processPaymentPayPal();
+            return ResponseEntity.ok(paymentDetails); // ok è una scorciatoia per status.OK
+        } catch (NotEnoughMoneyException nemEx) {
+            ErrorDetails errorDetails = new ErrorDetails();
+            errorDetails.setMessage("Non ci sono abbastanza fondi...");
+            return ResponseEntity.badRequest().body(errorDetails); // torniamo 400 con un messaggio di errore nel body
         }
     }
 
