@@ -25,6 +25,7 @@ public class PaymentsProxy {
         return webClient
                 .post() // dichiaro di voler fare una chiamata http post
                 .uri(url + "/payments")// Costruzione dell'uri
+                .header("requestId", requestId) // inserisco l'header richiesto dal server
                 .body(Mono.just(payment), Payment.class)// Riempio il body con l'oggetto payment
                 .retrieve()// chiamo il server upstream e prendo la risposta
                 .bodyToMono(Payment.class); // trasformo il body della risposta in oggetto payment
