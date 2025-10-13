@@ -27,5 +27,5 @@ public class AcquistiController {
     public List<Acquisto> recuperaAcquisti(){
         return repository.recuperaAcquisti();
     }
-    
+
 }
