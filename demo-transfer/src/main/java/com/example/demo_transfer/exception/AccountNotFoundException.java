@@ -1,4 +1,4 @@
 package com.example.demo_transfer.exception;
 
-public class AccountNotFoundException {
+public class AccountNotFoundException extends RuntimeException {
 }
